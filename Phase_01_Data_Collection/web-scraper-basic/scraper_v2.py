@@ -63,9 +63,14 @@ def fetch_and_save_quotes() -> None:
         df["author"] = df["author"].str.strip()
 
         # Persistence (Save to Disk)
-        output_file = "quotes.csv"
+        # output_file = "quotes.csv"
+        output_file = "quotes.xlsx"
 
-        df.to_csv(output_file, index=False, encoding="utf-8-sig")
+        # Change to_csv -> to_excel
+        # index=False: Hide the 0,1,2... row numbers
+        # engine="openpyxl": Explicitly tell Pandas which tool to use
+        # df.to_csv(output_file, index=False, encoding="utf-8-sig")
+        df.to_excel(output_file, index=False, engine="openpyxl")
 
         print(f"Data pipeline complete. Output saved to: {output_file}")
 
